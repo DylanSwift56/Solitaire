@@ -12,6 +12,10 @@ public class SolitaireGui extends JFrame{
     private JPanel foundations;
     private JPanel topPanel;
     private JPanel bottomPanel;
+    private JLabel foundation1;
+    private JLabel foundation2;
+    private JLabel foundation3;
+    private JLabel foundation4;
 
     public SolitaireGui(){
         setContentPane(panel1);
@@ -21,14 +25,25 @@ public class SolitaireGui extends JFrame{
         setLocationRelativeTo(null);//centers gui on the screen
         addWindowListener(new SolitaireGui.WindowEventHandler());
         JLabel card = new JLabel();
-        card.setIcon(new ImageIcon("aceOfHearts.png"));
+        card.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         cardStack.add(card);
+
+        foundation1.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundation2.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundation3.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundation4.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+
+        //foundation1.add(card);
+
         setVisible(true);
+
+
     }
 
     public static void main(String[] args) {
         SolitaireGui gui = new SolitaireGui();
     }
+
 
     private class WindowEventHandler implements WindowListener {
 
