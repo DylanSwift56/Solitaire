@@ -43,15 +43,15 @@ public class GameScreen extends JFrame{
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);//from https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
-        addWindowListener(new WindowEventHandler());
+        ;
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        GameScreen screen = new GameScreen();
+        SolitaireGui screen = new SolitaireGui();
     }
 
-    private class WindowEventHandler implements WindowListener{
+    /*private class WindowEventHandler implements WindowListener{
 
         @Override
         public void windowOpened(WindowEvent e) {
@@ -91,5 +91,5 @@ public class GameScreen extends JFrame{
         public void windowDeactivated(WindowEvent e) {
 
         }
-    }
+    }*/
 }

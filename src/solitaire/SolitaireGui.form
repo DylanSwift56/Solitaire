@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="solitaire.SolitaireGui">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="79" width="800" height="600"/>
+    </constraints>
+    <properties>
+      <background color="-16695040"/>
+      <minimumSize width="800" height="600"/>
+      <preferredSize width="800" height="600"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="707d9" binding="topPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties>
+          <preferredSize width="100" height="150"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="c7810" binding="cardStack" layout-manager="BorderLayout" hgap="50" vgap="0">
+            <constraints border-constraint="West"/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <preferredSize width="100" height="150"/>
+              <requestFocusEnabled value="true"/>
+            </properties>
+            <border type="line"/>
+            <children/>
+          </grid>
+          <grid id="e088c" binding="foundations" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="East"/>
+            <properties>
+              <preferredSize width="600" height="150"/>
+            </properties>
+            <border type="line"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <grid id="606a0" binding="bottomPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <maximumSize width="100" height="100"/>
+          <preferredSize width="100" height="50"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="fed81" binding="tableau" layout-manager="GridBagLayout">
+            <constraints/>
+            <properties>
+              <autoscrolls value="false"/>
+              <background color="-2961458"/>
+              <preferredSize width="800" height="200"/>
+            </properties>
+            <border type="line"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
