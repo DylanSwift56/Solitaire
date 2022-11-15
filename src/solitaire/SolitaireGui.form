@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="solitaire.SolitaireGui">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="79" width="800" height="600"/>
+      <xy x="20" y="79" width="900" height="600"/>
     </constraints>
     <properties>
       <background color="-16695040"/>
-      <minimumSize width="800" height="600"/>
-      <preferredSize width="800" height="600"/>
+      <minimumSize width="900" height="600"/>
+      <preferredSize width="900" height="600"/>
     </properties>
     <border type="none"/>
     <children>
@@ -18,54 +18,80 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="c7810" binding="cardStack" layout-manager="BorderLayout" hgap="50" vgap="0">
-            <constraints border-constraint="West"/>
-            <properties>
-              <alignmentX value="0.5"/>
-              <preferredSize width="100" height="150"/>
-              <requestFocusEnabled value="true"/>
-            </properties>
-            <border type="none"/>
-            <children/>
-          </grid>
           <grid id="e088c" binding="foundations" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints border-constraint="East"/>
             <properties>
-              <preferredSize width="500" height="150"/>
+              <preferredSize width="550" height="150"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="906cb" class="javax.swing.JLabel" binding="foundation1">
+              <component id="7c22e" class="javax.swing.JToggleButton" binding="foundation1">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
                   <text value=""/>
                 </properties>
               </component>
-              <component id="90f29" class="javax.swing.JLabel" binding="foundation2">
+              <component id="b0651" class="javax.swing.JToggleButton" binding="foundation2">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
                   <text value=""/>
                 </properties>
               </component>
-              <component id="a56cc" class="javax.swing.JLabel" binding="foundation3">
+              <component id="5048c" class="javax.swing.JToggleButton" binding="foundation3">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
                   <text value=""/>
                 </properties>
               </component>
-              <component id="b1f9b" class="javax.swing.JLabel" binding="foundation4">
+              <component id="69c73" class="javax.swing.JToggleButton" binding="foundation4">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
                   <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="b4c86" binding="cardStackPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints border-constraint="West"/>
+            <properties>
+              <preferredSize width="300" height="100"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="b5b53" class="javax.swing.JToggleButton" binding="cardStack">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
+                </properties>
+              </component>
+              <component id="425de" class="javax.swing.JToggleButton" binding="discardPile">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
                 </properties>
               </component>
             </children>
