@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class SolitaireGui extends JFrame{
+public class SolitaireGui extends JFrame implements ActionListener{
     private JPanel mainPanel;
     private JToggleButton cardStack;
     private JPanel cardStackPanel;
@@ -68,7 +68,7 @@ public class SolitaireGui extends JFrame{
         tableau6.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         tableau7.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         cardStack.addActionListener(this::cardStackClk);
-        tableau1.addActionListener(this::moveCardToFoundation);
+        tableau1.addActionListener(this::actionPerformed);
 
         //if(tableau1.isSelected()){
           //  temp.set(tableau1.getI);
@@ -109,7 +109,12 @@ public class SolitaireGui extends JFrame{
         SolitaireGui gui = new SolitaireGui();
     }
 
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JToggleButton item = (JToggleButton) e.getSource();
+        foundation1.setIcon(item.getIcon());
+        tableau1.setIcon(null);
+    }
 
 
     private class WindowEventHandler implements WindowListener {
