@@ -25,10 +25,11 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JToggleButton tableau5;
     private JToggleButton tableau6;
     private JToggleButton tableau7;
-    int nextDiscardCard = 0;
+    int nextDiscardCard = 1;
+    private int currentCard = 0;
     ImageIcon temp;
 
-    ArrayList<ImageIcon> discardcards = new ArrayList<ImageIcon>();
+    ArrayList<ImageIcon> cards = new ArrayList<ImageIcon>();
 
     ArrayList<JToggleButton> allTableau = new ArrayList<JToggleButton>();
 
@@ -81,24 +82,27 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         setVisible(true);
 
-        discardcards.add(new ImageIcon("aceOfHearts.png"));
-        discardcards.add(new ImageIcon("aceOfSpades.png"));
-        discardcards.add(new ImageIcon("aceOfDiamonds.png"));
+        cards.add(new ImageIcon("aceOfHearts.png"));
+        cards.add(new ImageIcon("aceOfSpades.png"));
+        cards.add(new ImageIcon("aceOfDiamonds.png"));
+        cards.add(new ImageIcon("kingOfHearts.jpg"));
+        cards.add(new ImageIcon("twoOfClubs.jpg"));
+        cards.add(new ImageIcon("threeOfClubs.jpg"));
 
     }
 
     public void cardStackClk(ActionEvent e){
         discardPile.removeAll();
 
-        if((nextDiscardCard + 1) <= discardcards.size()) {
-            discardPile.setIcon(discardcards.get(nextDiscardCard));
-            nextDiscardCard++;
-            validate();
+        if((currentCard) < cards.size()) {
+            discardPile.setIcon(cards.get(currentCard));
+            currentCard++;
         }
         else{
             discardPile.setIcon(null);
-            nextDiscardCard = 0;
+            currentCard = 0;
         }
+
 
     }
 
@@ -112,10 +116,18 @@ public class SolitaireGui extends JFrame implements ActionListener{
         if(item.getIcon() != null)
             foundation1.setIcon(item.getIcon());
         if(item.equals(discardPile)){
-            discardcards.remove(nextDiscardCard - 1);
-        }
+            if(currentCard >=1) {
+                currentCard--;//Reset the discard pile to previous card as current card was incremented already
+                cards.remove(currentCard);
+                currentCard--;//goes back to card previous to card removed
+            }
+            else
+                cards.remove(0);//if current card is 0 simply remove it
+                currentCard = 0;
+            }
+        item.setIcon(null);//removes icon from button it was attached to
 
-        item.setIcon(null);
+        validate();
 
         //fix this counter needs to only increment by 1
         for(JToggleButton toggleButton: allTableau){
@@ -142,7 +154,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         public void windowClosing(WindowEvent e) {
 
 
-            /*int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exiting....",
+            int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exiting....",
                     JOptionPane.YES_NO_CANCEL_OPTION);
 
             if(choice==JOptionPane.YES_OPTION) {
@@ -151,7 +163,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
             }
             else{
 
-            }*/
+            }
         }
 
         @Override
