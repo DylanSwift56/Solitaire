@@ -140,11 +140,18 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         @Override
         public void windowClosing(WindowEvent e) {
-            int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exiting....",
+
+
+            /*int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exiting....",
                     JOptionPane.YES_NO_CANCEL_OPTION);
 
-            if(choice==JOptionPane.YES_OPTION)
+            if(choice==JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Thanks for Playing!", "Goodbye", 1);
                 dispose();
+            }
+            else{
+
+            }*/
         }
 
         @Override
