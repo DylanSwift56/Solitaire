@@ -30,10 +30,14 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     ArrayList<ImageIcon> discardcards = new ArrayList<ImageIcon>();
 
+    ArrayList<JToggleButton> allTableau = new ArrayList<JToggleButton>();
+
+    private int cardCount = 52;
+
+    private int tableauCounter = 0;
+
 
     public SolitaireGui(){
-
-
 
         setContentPane(mainPanel);
         setTitle("Solitaire");
@@ -42,18 +46,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         addWindowListener(new SolitaireGui.WindowEventHandler());
         JLabel card = new JLabel();
         card.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        //setResizable(false);
-
-
-
-        cardStackPanel.setBackground(Color.BLUE);
-        foundations.setBackground(Color.BLUE);
-        //bottomPanel.setBackground(Color.BLUE);
-        topPanel.setBackground(Color.BLUE);
         cardStack.add(card);
-
-
-
 
         foundation1.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         foundation2.setIcon(new ImageIcon("backOfCardSmall.jpg"));
@@ -61,22 +54,33 @@ public class SolitaireGui extends JFrame implements ActionListener{
         foundation4.setIcon(new ImageIcon("backOfCardSmall.jpg"));
 
         tableau1.setIcon(new ImageIcon("aceOfHearts.png"));
-        tableau2.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        tableau3.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        tableau4.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        tableau5.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        tableau6.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        tableau7.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        tableau2.setIcon(new ImageIcon("aceOfDiamonds.png"));
+        tableau3.setIcon(new ImageIcon("aceOfSpades.png"));
+        tableau4.setIcon(new ImageIcon("aceOfHearts.png"));
+        tableau5.setIcon(new ImageIcon("aceOfDiamonds.png"));
+        tableau6.setIcon(new ImageIcon("aceOfSpades.png"));
+        tableau7.setIcon(new ImageIcon("aceOfHearts.png"));
+
+        allTableau.add(tableau1);
+        allTableau.add(tableau2);
+        allTableau.add(tableau3);
+        allTableau.add(tableau4);
+        allTableau.add(tableau5);
+        allTableau.add(tableau6);
+        allTableau.add(tableau7);
+
         cardStack.addActionListener(this::cardStackClk);
         tableau1.addActionListener(this::actionPerformed);
-
-        //if(tableau1.isSelected()){
-          //  temp.set(tableau1.getI);
-        //}
+        discardPile.addActionListener(this::actionPerformed);
+        tableau2.addActionListener(this::actionPerformed);
+        tableau3.addActionListener(this::actionPerformed);
+        tableau4.addActionListener(this::actionPerformed);
+        tableau5.addActionListener((this::actionPerformed));
+        tableau6.addActionListener(this::actionPerformed);
+        tableau7.addActionListener(this::actionPerformed);
 
         setVisible(true);
 
-       // discardcards.add(new ImageIcon("backOfCardSmall.jpg"));
         discardcards.add(new ImageIcon("aceOfHearts.png"));
         discardcards.add(new ImageIcon("aceOfSpades.png"));
         discardcards.add(new ImageIcon("aceOfDiamonds.png"));
@@ -98,13 +102,6 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     }
 
-    public void moveCardToFoundation(ActionEvent e){
-            //foundation1.setIcon(new ImageIcon(get));
-            tableau1.setIcon(null);
-    }
-
-
-
     public static void main(String[] args) {
         SolitaireGui gui = new SolitaireGui();
     }
@@ -112,8 +109,25 @@ public class SolitaireGui extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JToggleButton item = (JToggleButton) e.getSource();
-        foundation1.setIcon(item.getIcon());
-        tableau1.setIcon(null);
+        if(item.getIcon() != null)
+            foundation1.setIcon(item.getIcon());
+        if(item.equals(discardPile)){
+            discardcards.remove(nextDiscardCard - 1);
+        }
+
+        item.setIcon(null);
+
+        //fix this counter needs to only increment by 1
+        for(JToggleButton toggleButton: allTableau){
+            if(toggleButton.getIcon() == null)
+                tableauCounter++;
+        }
+
+        if(tableauCounter == 28) {
+            JOptionPane.showMessageDialog(null, "Congratulations you have won the game!!!", "Congratulations!!", 1);
+            dispose();
+        }
+        validate();
     }
 
 

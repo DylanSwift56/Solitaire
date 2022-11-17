@@ -120,7 +120,7 @@
             <properties>
               <alignmentY value="1.0"/>
               <autoscrolls value="false"/>
-              <background color="-14218030"/>
+              <background color="-3076"/>
               <preferredSize width="800" height="200"/>
             </properties>
             <border type="line"/>
@@ -139,6 +139,7 @@
                   <maximumSize width="98" height="20"/>
                   <minimumSize width="98" height="20"/>
                   <preferredSize width="98" height="20"/>
+                  <text value=""/>
                   <verticalAlignment value="0"/>
                 </properties>
               </component>
