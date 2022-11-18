@@ -87,26 +87,33 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         tableau.setLayout(null);
 
-
         addComponent(tableau, tableau1, 0, 80, 98,150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 0,40, 98, 150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 0,0, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 0,40, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 0,0, 98, 150);
 
-        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 140, 80, 98,150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 140,40, 98, 150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 140,0, 98, 150);
+        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 140, 80, 98,150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 140,40, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 140,0, 98, 150);
 
-        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 280, 80, 98,150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 280,40, 98, 150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 280,0, 98, 150);
+        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 280, 80, 98,150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 280,40, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 280,0, 98, 150);
 
-        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 420, 80, 98,150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 420,40, 98, 150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 420,0, 98, 150);
+        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 420, 80, 98,150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 420,40, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 420,0, 98, 150);
 
-        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 560, 80, 98,150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 560,40, 98, 150);
-        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 560,0, 98, 150);
+        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 560, 80, 98,150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 560,40, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 560,0, 98, 150);
+
+        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 700, 80, 98,150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 700,40, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 700,0, 98, 150);
+
+        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 840, 80, 98,150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 840,40, 98, 150);
+        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 840,0, 98, 150);
 
 
         setVisible(true);
@@ -126,14 +133,11 @@ public class SolitaireGui extends JFrame implements ActionListener{
         if(currentCard < cards.size()) {
             discardPile.setIcon(cards.get(currentCard));
             currentCard++;
-            //JOptionPane.showMessageDialog(null,currentCard + "  " + cards.size());
         }
         else{
             discardPile.setIcon(null);
             currentCard = 0;
         }
-
-
     }
 
     public static void main(String[] args) {
@@ -156,10 +160,19 @@ public class SolitaireGui extends JFrame implements ActionListener{
             else {
                 cards.remove(0);//if current card is 0 simply remove it
                 currentCard = 0;
-            }
 
             }
-        item.setIcon(null);//removes icon from button it was attached to
+            }
+        //removes icon from button it was attached to
+        item.setIcon(null);
+        if(item.getParent().equals(tableau)){
+            //Removes any trace of card left, so you are able to click anywhere on the card behind
+            tableau.remove(item);
+            tableau.repaint();
+            tableau.revalidate();
+        }
+
+
 
         validate();
 
@@ -239,9 +252,12 @@ public class SolitaireGui extends JFrame implements ActionListener{
         container.add(c);
     }
 
-    private JToggleButton addJToggleButton(ImageIcon icon, Container container) {
+    private JToggleButton addJToggleButton(ImageIcon icon) {
         //https://stackoverflow.com/questions/15125388/java-stacking-components
         JToggleButton button = new JToggleButton(icon);
+        button.addActionListener(this::actionPerformed);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
         return button;
     }
 }
