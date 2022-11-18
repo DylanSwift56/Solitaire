@@ -80,6 +80,8 @@ public class SolitaireGui extends JFrame implements ActionListener{
         tableau6.addActionListener(this::actionPerformed);
         tableau7.addActionListener(this::actionPerformed);
 
+        //addComponent(bottomPanel,new JLabel("This worked"), 200,200);
+
         setVisible(true);
 
         cards.add(new ImageIcon("aceOfHearts.png"));
@@ -94,9 +96,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
     public void cardStackClk(ActionEvent e){
         discardPile.removeAll();
 
-        if((currentCard) < cards.size()) {
+        if(currentCard < cards.size()) {
             discardPile.setIcon(cards.get(currentCard));
             currentCard++;
+            //JOptionPane.showMessageDialog(null,currentCard + "  " + cards.size());
         }
         else{
             discardPile.setIcon(null);
@@ -116,14 +119,18 @@ public class SolitaireGui extends JFrame implements ActionListener{
         if(item.getIcon() != null)
             foundation1.setIcon(item.getIcon());
         if(item.equals(discardPile)){
-            if(currentCard >=1) {
+            if(currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
                 cards.remove(currentCard);
                 currentCard--;//goes back to card previous to card removed
+                discardPile.setIcon(cards.get(currentCard));
+                return;
             }
-            else
+            else {
                 cards.remove(0);//if current card is 0 simply remove it
                 currentCard = 0;
+            }
+
             }
         item.setIcon(null);//removes icon from button it was attached to
 
@@ -190,5 +197,17 @@ public class SolitaireGui extends JFrame implements ActionListener{
         public void windowDeactivated(WindowEvent e) {
 
         }
+    }
+
+    private void addComponent(Container container, Component c, int x, int y,int width, int height) {
+
+        c.setBounds(x, y, width, height);
+        container.add(c);
+    }
+
+    private void addComponent(Container container, Component c, int x, int y) {
+
+        c.setBounds(x, y, c.getWidth(), c.getHeight());
+        container.add(c);
     }
 }
