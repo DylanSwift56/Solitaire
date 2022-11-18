@@ -25,6 +25,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JToggleButton tableau5;
     private JToggleButton tableau6;
     private JToggleButton tableau7;
+    public JToggleButton newButton;
     int nextDiscardCard = 1;
     private int currentCard = 0;
     ImageIcon temp;
@@ -80,7 +81,33 @@ public class SolitaireGui extends JFrame implements ActionListener{
         tableau6.addActionListener(this::actionPerformed);
         tableau7.addActionListener(this::actionPerformed);
 
-        //addComponent(bottomPanel,new JLabel("This worked"), 200,200);
+        tableau.remove(tableau1);
+        tableau.remove(tableau2);
+        tableau.remove(tableau3);
+
+        tableau.setLayout(null);
+
+
+        addComponent(tableau, tableau1, 0, 80, 98,150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 0,40, 98, 150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 0,0, 98, 150);
+
+        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 140, 80, 98,150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 140,40, 98, 150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 140,0, 98, 150);
+
+        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 280, 80, 98,150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 280,40, 98, 150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 280,0, 98, 150);
+
+        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 420, 80, 98,150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 420,40, 98, 150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 420,0, 98, 150);
+
+        addComponent(tableau, new JToggleButton(new ImageIcon("kingOfHearts.jpg")), 560, 80, 98,150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("aceOfDiamonds.png")), 560,40, 98, 150);
+        addComponent(tableau,new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), 560,0, 98, 150);
+
 
         setVisible(true);
 
@@ -200,14 +227,21 @@ public class SolitaireGui extends JFrame implements ActionListener{
     }
 
     private void addComponent(Container container, Component c, int x, int y,int width, int height) {
-
-        c.setBounds(x, y, width, height);
-        container.add(c);
+        Component tempC = c;
+    //https://stackoverflow.com/questions/15125388/java-stacking-components
+        tempC.setBounds(x, y, width, height);
+        container.add(tempC);
     }
 
     private void addComponent(Container container, Component c, int x, int y) {
-
+    //https://stackoverflow.com/questions/15125388/java-stacking-components
         c.setBounds(x, y, c.getWidth(), c.getHeight());
         container.add(c);
+    }
+
+    private JToggleButton addJToggleButton(ImageIcon icon, Container container) {
+        //https://stackoverflow.com/questions/15125388/java-stacking-components
+        JToggleButton button = new JToggleButton(icon);
+        return button;
     }
 }
