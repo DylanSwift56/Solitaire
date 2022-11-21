@@ -1,4 +1,4 @@
 package solitaire;
 
-public class GUI {
+public class Suit {
 }

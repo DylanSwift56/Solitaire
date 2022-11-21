@@ -33,6 +33,7 @@
                 <properties>
                   <borderPainted value="false"/>
                   <contentAreaFilled value="false"/>
+                  <enabled value="true"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -43,6 +44,7 @@
                 <properties>
                   <borderPainted value="false"/>
                   <contentAreaFilled value="false"/>
+                  <enabled value="true"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -53,6 +55,7 @@
                 <properties>
                   <borderPainted value="false"/>
                   <contentAreaFilled value="false"/>
+                  <enabled value="true"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -63,6 +66,7 @@
                 <properties>
                   <borderPainted value="false"/>
                   <contentAreaFilled value="false"/>
+                  <enabled value="true"/>
                   <text value=""/>
                 </properties>
               </component>

@@ -29,8 +29,8 @@ public class SolitaireGui extends JFrame implements ActionListener{
     int nextDiscardCard = 1;
     private int currentCard = 0;
     ImageIcon temp;
+    Point corner, previousPoint;
 
-    ArrayList<ImageIcon> cards = new ArrayList<ImageIcon>();
 
     ArrayList<JToggleButton> allTableau = new ArrayList<JToggleButton>();
 
@@ -50,18 +50,13 @@ public class SolitaireGui extends JFrame implements ActionListener{
         card.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         cardStack.add(card);
 
+        corner = new Point(0,0);
+
         foundation1.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         foundation2.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         foundation3.setIcon(new ImageIcon("backOfCardSmall.jpg"));
         foundation4.setIcon(new ImageIcon("backOfCardSmall.jpg"));
 
-        tableau1.setIcon(new ImageIcon("aceOfHearts.png"));
-        tableau2.setIcon(new ImageIcon("aceOfDiamonds.png"));
-        tableau3.setIcon(new ImageIcon("aceOfSpades.png"));
-        tableau4.setIcon(new ImageIcon("aceOfHearts.png"));
-        tableau5.setIcon(new ImageIcon("aceOfDiamonds.png"));
-        tableau6.setIcon(new ImageIcon("aceOfSpades.png"));
-        tableau7.setIcon(new ImageIcon("aceOfHearts.png"));
 
         allTableau.add(tableau1);
         allTableau.add(tableau2);
@@ -70,6 +65,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         allTableau.add(tableau5);
         allTableau.add(tableau6);
         allTableau.add(tableau7);
+
 
         cardStack.addActionListener(this::cardStackClk);
         tableau1.addActionListener(this::actionPerformed);
@@ -80,6 +76,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         tableau5.addActionListener((this::actionPerformed));
         tableau6.addActionListener(this::actionPerformed);
         tableau7.addActionListener(this::actionPerformed);
+
 
         tableau.remove(tableau1);
         tableau.remove(tableau2);
@@ -118,12 +115,6 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         setVisible(true);
 
-        cards.add(new ImageIcon("aceOfHearts.png"));
-        cards.add(new ImageIcon("aceOfSpades.png"));
-        cards.add(new ImageIcon("aceOfDiamonds.png"));
-        cards.add(new ImageIcon("kingOfHearts.jpg"));
-        cards.add(new ImageIcon("twoOfClubs.jpg"));
-        cards.add(new ImageIcon("threeOfClubs.jpg"));
 
     }
 
@@ -188,6 +179,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
         }
         validate();
     }
+
+
+
+
 
 
     private class WindowEventHandler implements WindowListener {
