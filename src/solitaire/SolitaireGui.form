@@ -26,7 +26,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="7c22e" class="javax.swing.JToggleButton" binding="foundation1">
+              <component id="7c22e" class="javax.swing.JToggleButton" binding="foundationHearts">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -37,7 +37,7 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="b0651" class="javax.swing.JToggleButton" binding="foundation2">
+              <component id="b0651" class="javax.swing.JToggleButton" binding="foundationClubs">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -48,7 +48,7 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="5048c" class="javax.swing.JToggleButton" binding="foundation3">
+              <component id="5048c" class="javax.swing.JToggleButton" binding="foundationDiamonds">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -59,7 +59,7 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="69c73" class="javax.swing.JToggleButton" binding="foundation4">
+              <component id="69c73" class="javax.swing.JToggleButton" binding="foundationSpades">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>

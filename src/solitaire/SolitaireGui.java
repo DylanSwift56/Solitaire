@@ -13,10 +13,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JPanel foundations;
     private JPanel topPanel;
     private JPanel bottomPanel;
-    private JToggleButton foundation1;
-    private JToggleButton foundation2;
-    private JToggleButton foundation3;
-    private JToggleButton foundation4;
+    private JToggleButton foundationHearts;
+    private JToggleButton foundationClubs;
+    private JToggleButton foundationDiamonds;
+    private JToggleButton foundationSpades;
     private JToggleButton discardPile;
     private JToggleButton tableau1;
     private JToggleButton tableau2;
@@ -30,6 +30,8 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private int currentCard = 0;
     ImageIcon temp;
     Point corner, previousPoint;
+
+    ArrayList<ImageIcon> cards = new ArrayList<ImageIcon>();
 
 
     ArrayList<JToggleButton> allTableau = new ArrayList<JToggleButton>();
@@ -52,10 +54,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         corner = new Point(0,0);
 
-        foundation1.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        foundation2.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        foundation3.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        foundation4.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationHearts.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationClubs.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationDiamonds.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationSpades.setIcon(new ImageIcon("backOfCardSmall.jpg"));
 
 
         allTableau.add(tableau1);
@@ -65,6 +67,13 @@ public class SolitaireGui extends JFrame implements ActionListener{
         allTableau.add(tableau5);
         allTableau.add(tableau6);
         allTableau.add(tableau7);
+
+        cards.add(new ImageIcon("aceOfHearts.png"));
+        cards.add(new ImageIcon("aceOfSpades.png"));
+        cards.add(new ImageIcon("aceOfDiamonds.png"));
+        cards.add(new ImageIcon("kingOfHearts.jpg"));
+        cards.add(new ImageIcon("twoOfClubs.jpg"));
+        cards.add(new ImageIcon("threeOfClubs.jpg"));
 
 
         cardStack.addActionListener(this::cardStackClk);
@@ -139,7 +148,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         JToggleButton item = (JToggleButton) e.getSource();
         if(item.getIcon() != null)
-            foundation1.setIcon(item.getIcon());
+            foundationHearts.setIcon(item.getIcon());
         if(item.equals(discardPile)){
             if(currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
@@ -173,10 +182,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
                 tableauCounter++;
         }
 
-        if(tableauCounter == 28) {
-            JOptionPane.showMessageDialog(null, "Congratulations you have won the game!!!", "Congratulations!!", 1);
-            dispose();
-        }
+        //if(tableauCounter == 28) {
+         //   JOptionPane.showMessageDialog(null, "Congratulations you have won the game!!!", "Congratulations!!", 1);
+          //  dispose();
+     //   }
         validate();
     }
 

@@ -10,14 +10,21 @@ public class Card {
     private JToggleButton base;
     private ImageIcon cardImage;
 
-   public ArrayList<ImageIcon> allImages = new ArrayList<ImageIcon>();
 
+
+
+
+    public Card() {
+
+    }
 
     public Card(int value, int suit, JToggleButton base, ImageIcon cardImage) {
         getValue();
         getSuit();
         getBase();
         getCardImage();
+
+
     }
 
     public int getValue() {
@@ -65,13 +72,7 @@ public class Card {
             return String.valueOf(value);
     }
 
-    private void setImages(){
+    public void setImages(){
 
-        allImages.add(new ImageIcon("aceOfHearts.png"));
-        allImages.add(new ImageIcon("aceOfSpades.png"));
-        allImages.add(new ImageIcon("aceOfDiamonds.png"));
-        allImages.add(new ImageIcon("kingOfHearts.jpg"));
-        allImages.add(new ImageIcon("twoOfClubs.jpg"));
-        allImages.add(new ImageIcon("threeOfClubs.jpg"));
     }
 }
