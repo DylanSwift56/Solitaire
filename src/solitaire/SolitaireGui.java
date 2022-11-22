@@ -31,6 +31,8 @@ public class SolitaireGui extends JFrame implements ActionListener{
     ImageIcon temp;
     Point corner, previousPoint;
 
+    ArrayList<Card> cards;
+
 
     ArrayList<JToggleButton> allTableau = new ArrayList<JToggleButton>();
 
@@ -67,7 +69,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         allTableau.add(tableau7);
 
 
-        cardStack.addActionListener(this::cardStackClk);
+       // cardStack.addActionListener(this::cardStackClk);
         tableau1.addActionListener(this::actionPerformed);
         discardPile.addActionListener(this::actionPerformed);
         tableau2.addActionListener(this::actionPerformed);
@@ -108,7 +110,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 700,40, 98, 150);
         addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 700,0, 98, 150);
 
-        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 840, 80, 98,150);
+        addComponent(tableau, addJToggleButton(new ImageIcon("aceOfClubs.jpg")), 840, 80, 98,150);
         addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 840,40, 98, 150);
         addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 840,0, 98, 150);
 
@@ -118,7 +120,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     }
 
-    public void cardStackClk(ActionEvent e){
+    /*public void cardStackClk(ActionEvent e){
         discardPile.removeAll();
 
         if(currentCard < cards.size()) {
@@ -129,7 +131,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
             discardPile.setIcon(null);
             currentCard = 0;
         }
-    }
+    }*/
 
     public static void main(String[] args) {
         SolitaireGui gui = new SolitaireGui();
@@ -145,7 +147,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
                 cards.remove(currentCard);
                 currentCard--;//goes back to card previous to card removed
-                discardPile.setIcon(cards.get(currentCard));
+                //discardPile.setIcon(cards.get(currentCard));
                 return;
             }
             else {

@@ -6,18 +6,19 @@ import java.util.ArrayList;
 
 public class Card {
     public int value;
-    public int suit;
+    public String suit;
     private JToggleButton base;
     private ImageIcon cardImage;
 
    public ArrayList<ImageIcon> allImages = new ArrayList<ImageIcon>();
 
 
-    public Card(int value, int suit, JToggleButton base, ImageIcon cardImage) {
+    public Card(int value, String  suit) {
         getValue();
         getSuit();
-        getBase();
-        getCardImage();
+
+        String image = this.toString() + ".jpg";
+        base = new JToggleButton(new ImageIcon(image));
     }
 
     public int getValue() {
@@ -28,11 +29,11 @@ public class Card {
         this.value = value;
     }
 
-    public int getSuit() {
+    public String getSuit() {
         return suit;
     }
 
-    public void setSuit(int suit) {
+    public void setSuit(String suit) {
         this.suit = suit;
     }
 
@@ -45,7 +46,8 @@ public class Card {
     }
 
     public ImageIcon getCardImage() {
-        return cardImage;
+        return (ImageIcon) base.getIcon();
+
     }
 
     public void setCardImage(ImageIcon cardImage) {
@@ -70,8 +72,12 @@ public class Card {
         allImages.add(new ImageIcon("aceOfHearts.png"));
         allImages.add(new ImageIcon("aceOfSpades.png"));
         allImages.add(new ImageIcon("aceOfDiamonds.png"));
+        allImages.add(new ImageIcon("aceOfClubs.jpg"));
+
         allImages.add(new ImageIcon("kingOfHearts.jpg"));
         allImages.add(new ImageIcon("twoOfClubs.jpg"));
         allImages.add(new ImageIcon("threeOfClubs.jpg"));
+
+
     }
 }

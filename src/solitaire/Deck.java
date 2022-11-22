@@ -1,15 +1,20 @@
 package solitaire;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Deck extends Card{
+public class Deck{
     ArrayList<Card> cards;
     ArrayList<String> suits = new ArrayList<>(Arrays.asList("hearts", "diamonds", "spades", "clubs"));
 
     public Deck() {
-        super();
 
-        cards = new ArrayList<>();
+
+    }
+
+    public static void main(String[] args) {
+        Card twoOfHearts = new Card(2, "Hearts");
+        JOptionPane.showMessageDialog(null, twoOfHearts.toString());
     }
 }
