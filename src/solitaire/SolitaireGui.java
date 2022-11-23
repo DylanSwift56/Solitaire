@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class SolitaireGui extends JFrame implements ActionListener{
     private JPanel mainPanel;
@@ -33,6 +34,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     ArrayList<Card> cards;
 
+    Deck deck;
+
+    Iterator<Card> iterator;
+
 
     ArrayList<JToggleButton> allTableau = new ArrayList<JToggleButton>();
 
@@ -42,6 +47,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
 
     public SolitaireGui(){
+
+        deck = new Deck();
+
+        iterator = deck.getCards().iterator();
 
         setContentPane(mainPanel);
         setTitle("Solitaire");
@@ -68,8 +77,9 @@ public class SolitaireGui extends JFrame implements ActionListener{
         allTableau.add(tableau6);
         allTableau.add(tableau7);
 
+        populateTableau(deck, iterator);
 
-       // cardStack.addActionListener(this::cardStackClk);
+        cardStack.addActionListener(this::cardStackClk);
         tableau1.addActionListener(this::actionPerformed);
         discardPile.addActionListener(this::actionPerformed);
         tableau2.addActionListener(this::actionPerformed);
@@ -80,61 +90,66 @@ public class SolitaireGui extends JFrame implements ActionListener{
         tableau7.addActionListener(this::actionPerformed);
 
 
+
         tableau.remove(tableau1);
         tableau.remove(tableau2);
         tableau.remove(tableau3);
 
         tableau.setLayout(null);
 
-        addComponent(tableau, tableau1, 0, 80, 98,150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 0,40, 98, 150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 0,0, 98, 150);
 
-        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 140, 80, 98,150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 140,40, 98, 150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 140,0, 98, 150);
-
-        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 280, 80, 98,150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 280,40, 98, 150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 280,0, 98, 150);
-
-        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 420, 80, 98,150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 420,40, 98, 150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 420,0, 98, 150);
-
-        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 560, 80, 98,150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 560,40, 98, 150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 560,0, 98, 150);
-
-        addComponent(tableau, addJToggleButton(new ImageIcon("kingOfHearts.jpg")), 700, 80, 98,150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 700,40, 98, 150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 700,0, 98, 150);
-
-        addComponent(tableau, addJToggleButton(new ImageIcon("aceOfClubs.jpg")), 840, 80, 98,150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("aceOfDiamonds.png")), 840,40, 98, 150);
-        addComponent(tableau,addJToggleButton(new ImageIcon("backOfCardSmall.jpg")), 840,0, 98, 150);
 
 
         setVisible(true);
 
-
     }
 
-    /*public void cardStackClk(ActionEvent e){
+    public void cardStackClk(ActionEvent e){
         discardPile.removeAll();
 
-        if(currentCard < cards.size()) {
-            discardPile.setIcon(cards.get(currentCard));
+        if(currentCard < deck.getCards().size()) {
+            discardPile.setIcon(deck.getCards().get(currentCard).getCardImage());
             currentCard++;
         }
         else{
             discardPile.setIcon(null);
             currentCard = 0;
         }
-    }*/
+    }
 
     public static void main(String[] args) {
         SolitaireGui gui = new SolitaireGui();
+
+    }
+
+    public void populateTableau(Deck deck, Iterator<Card> iterator){
+        int x = 0;
+        int y = 0;
+        int deckSize = 51;
+
+        Deck dummyDeck = deck;
+
+        for (int i = 1; i < 8; i++) {
+            for(int j = 0; j < i; j++) {
+                int rand = (int) ((Math.random() * deckSize) + 1);
+                Card randomCard = deck.getCards().get(rand);
+                if(j == 0) {
+                    addComponent(tableau, randomCard.getBase(), x, y, 98, 150);
+                }
+                else{
+                    randomCard.setReversed(true);
+                    addComponent(tableau, randomCard.getBase(), x, y, 98, 150);
+                }
+                deck.getCards().remove(randomCard);
+                if(i > 1)
+                    y -= 40;
+                deckSize--;
+            }
+            y = i * 40;
+            x += 140;
+        }
+
+
     }
 
     @Override
@@ -145,13 +160,13 @@ public class SolitaireGui extends JFrame implements ActionListener{
         if(item.equals(discardPile)){
             if(currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
-                cards.remove(currentCard);
+                deck.getCards().remove(currentCard);
                 currentCard--;//goes back to card previous to card removed
                 //discardPile.setIcon(cards.get(currentCard));
                 return;
             }
             else {
-                cards.remove(0);//if current card is 0 simply remove it
+                deck.getCards().remove(0);//if current card is 0 simply remove it
                 currentCard = 0;
 
             }
@@ -159,18 +174,39 @@ public class SolitaireGui extends JFrame implements ActionListener{
         //removes icon from button it was attached to
         item.setIcon(null);
         if(item.getParent().equals(tableau)){
+            JOptionPane.showMessageDialog(null, "aaa");
+
+            //item.setReversed(true);
+            for(Card card: deck.getCards()){
+                //if(item.getIcon().equals(card.)){
+
+
+                //}
+            }
+
+            /*if(e.getSource().getClass().){
+                card1.setReversed(false);
+                repaint();
+                JOptionPane.showMessageDialog(null, card1.getBase().getIcon());
+                return;
+            */}
+
+        //if(item.getIcon().equals(discardPile.getIcon()))
+
+
+
             //Removes any trace of card left, so you are able to click anywhere on the card behind
             tableau.remove(item);
             tableau.repaint();
             tableau.revalidate();
-        }
+
 
 
 
         validate();
 
         //fix this counter needs to only increment by 1
-        for(JToggleButton toggleButton: allTableau){
+        /*for(JToggleButton toggleButton: allTableau){
             if(toggleButton.getIcon() == null)
                 tableauCounter++;
         }
@@ -178,7 +214,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         if(tableauCounter == 28) {
             JOptionPane.showMessageDialog(null, "Congratulations you have won the game!!!", "Congratulations!!", 1);
             dispose();
-        }
+        }*/
         validate();
     }
 
@@ -237,10 +273,11 @@ public class SolitaireGui extends JFrame implements ActionListener{
     }
 
     private void addComponent(Container container, Component c, int x, int y,int width, int height) {
-        Component tempC = c;
+        JToggleButton tempC = (JToggleButton) c;
     //https://stackoverflow.com/questions/15125388/java-stacking-components
         tempC.setBounds(x, y, width, height);
         container.add(tempC);
+        tempC.addActionListener(this::actionPerformed);
     }
 
     private void addComponent(Container container, Component c, int x, int y) {

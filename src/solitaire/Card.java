@@ -9,14 +9,16 @@ public class Card {
     private JToggleButton base;
     private ImageIcon cardImage;
     private String cardName;
+    private boolean isReversed;
 
    public ArrayList<ImageIcon> allImages = new ArrayList<ImageIcon>();
 
 
-    public Card(String cardName, String value, String suit) {
+    public Card(String cardName, String value, String suit, boolean isReversed) {
         setValue(value);
         setSuit(suit);
         setCardName(cardName);
+        setReversed(isReversed);
 
         String image = getCardName() + ".jpg";
         setCardImage(new ImageIcon(image));
@@ -50,12 +52,25 @@ public class Card {
         this.base.setContentAreaFilled(false);
     }
 
+    public boolean isReversed() {
+        return isReversed;
+    }
+
+    public void setReversed(boolean reversed) {
+        isReversed = reversed;
+        if (reversed == true) {
+            this.cardImage = new ImageIcon("backOfCardSmall.jpg");
+            setBase(new JToggleButton(getCardImage()));
+        }
+    }
+
     public ImageIcon getCardImage() {
         return cardImage;
     }
 
     public void setCardImage(ImageIcon cardImage) {
-        this.cardImage = cardImage;
+        if(!isReversed())
+            this.cardImage = cardImage;
     }
 
     public String getCardName() {
@@ -79,19 +94,6 @@ public class Card {
             return String.valueOf(value);
     }
 
-    private void setImages(){
-
-        allImages.add(new ImageIcon("aceOfHearts.png"));
-        allImages.add(new ImageIcon("aceOfSpades.png"));
-        allImages.add(new ImageIcon("aceOfDiamonds.png"));
-        allImages.add(new ImageIcon("aceOfClubs.jpg"));
-
-        allImages.add(new ImageIcon("kingOfHearts.jpg"));
-        allImages.add(new ImageIcon("twoOfClubs.jpg"));
-        allImages.add(new ImageIcon("threeOfClubs.jpg"));
-
-
-    }
 
     public static void main(String[] args) {
 

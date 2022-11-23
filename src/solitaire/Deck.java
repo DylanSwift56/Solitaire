@@ -11,9 +11,9 @@ public class Deck{
 
     public Deck() {
         cards = new ArrayList<>();
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 13; j++) {
-                Card newCard = new Card(VALUES.get(j) + SUITS.get(i), VALUES.get(j), SUITS.get(i));//Creates all cards by combining value and suit to match jpg name
+        for(int i = 0; i < SUITS.size(); i++){
+            for(int j = 0; j < VALUES.size(); j++) {
+                Card newCard = new Card(VALUES.get(j) + SUITS.get(i), VALUES.get(j), SUITS.get(i), false);//Creates all cards by combining value and suit to match jpg name
                 cards.add(newCard);//adds cards to arrayList
             }
         }
