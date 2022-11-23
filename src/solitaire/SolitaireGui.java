@@ -13,10 +13,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JPanel foundations;
     private JPanel topPanel;
     private JPanel bottomPanel;
-    private JToggleButton foundation1;
-    private JToggleButton foundation2;
-    private JToggleButton foundation3;
-    private JToggleButton foundation4;
+    private JToggleButton foundationHearts;
+    private JToggleButton foundationClubs;
+    private JToggleButton foundationSpades;
+    private JToggleButton foundationDiamonds;
     private JToggleButton discardPile;
     private JToggleButton tableau1;
     private JToggleButton tableau2;
@@ -54,10 +54,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         corner = new Point(0,0);
 
-        foundation1.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        foundation2.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        foundation3.setIcon(new ImageIcon("backOfCardSmall.jpg"));
-        foundation4.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationHearts.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationClubs.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationSpades.setIcon(new ImageIcon("backOfCardSmall.jpg"));
+        foundationDiamonds.setIcon(new ImageIcon("backOfCardSmall.jpg"));
 
 
         allTableau.add(tableau1);
@@ -141,7 +141,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         JToggleButton item = (JToggleButton) e.getSource();
         if(item.getIcon() != null)
-            foundation1.setIcon(item.getIcon());
+            foundationHearts.setIcon(item.getIcon());
         if(item.equals(discardPile)){
             if(currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already

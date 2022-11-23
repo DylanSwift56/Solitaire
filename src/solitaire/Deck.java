@@ -6,15 +6,35 @@ import java.util.Arrays;
 
 public class Deck{
     ArrayList<Card> cards;
-    ArrayList<String> suits = new ArrayList<>(Arrays.asList("hearts", "diamonds", "spades", "clubs"));
+    final ArrayList<String> SUITS = new ArrayList<>(Arrays.asList("H", "D", "S", "C"));
+    final ArrayList<String> VALUES = new ArrayList<String>(Arrays.asList("A","2","3","4","5","6","7","8","9","10","J","Q","K"));
 
     public Deck() {
+        cards = new ArrayList<>();
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 13; j++) {
+                Card newCard = new Card(VALUES.get(j) + SUITS.get(i), VALUES.get(j), SUITS.get(i));//Creates all cards by combining value and suit to match jpg name
+                cards.add(newCard);//adds cards to arrayList
+            }
+        }
+    }
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 
+    public ArrayList<String> getSuits() {
+        return SUITS;
+    }
+
+    public ArrayList<String> getValues() {
+        return VALUES;
     }
 
     public static void main(String[] args) {
-        Card twoOfHearts = new Card(2, "Hearts");
-        JOptionPane.showMessageDialog(null, twoOfHearts.toString());
+        Deck deck = new Deck();
+        for (Card card: deck.cards) {
+            JOptionPane.showMessageDialog(null, card.getBase());
+        }
     }
 }

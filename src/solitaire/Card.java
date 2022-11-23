@@ -1,31 +1,34 @@
 package solitaire;
 
-
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class Card {
-    public int value;
+    public String value;
     public String suit;
     private JToggleButton base;
     private ImageIcon cardImage;
+    private String cardName;
 
    public ArrayList<ImageIcon> allImages = new ArrayList<ImageIcon>();
 
 
-    public Card(int value, String  suit) {
-        getValue();
-        getSuit();
+    public Card(String cardName, String value, String suit) {
+        setValue(value);
+        setSuit(suit);
+        setCardName(cardName);
 
-        String image = this.toString() + ".jpg";
-        base = new JToggleButton(new ImageIcon(image));
+        String image = getCardName() + ".jpg";
+        setCardImage(new ImageIcon(image));
+        base = new JToggleButton(getCardImage());
+        setBase(base);
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
@@ -43,15 +46,24 @@ public class Card {
 
     public void setBase(JToggleButton base) {
         this.base = base;
+        this.base.setBorderPainted(false);
+        this.base.setContentAreaFilled(false);
     }
 
     public ImageIcon getCardImage() {
-        return (ImageIcon) base.getIcon();
-
+        return cardImage;
     }
 
     public void setCardImage(ImageIcon cardImage) {
         this.cardImage = cardImage;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
     }
 
     public static String specialCards(int value) {
@@ -77,6 +89,11 @@ public class Card {
         allImages.add(new ImageIcon("kingOfHearts.jpg"));
         allImages.add(new ImageIcon("twoOfClubs.jpg"));
         allImages.add(new ImageIcon("threeOfClubs.jpg"));
+
+
+    }
+
+    public static void main(String[] args) {
 
 
     }
