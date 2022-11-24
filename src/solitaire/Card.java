@@ -2,19 +2,20 @@ package solitaire;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Card {
-    public String value;
+    public int value;
     public String suit;
     private JToggleButton base;
     private ImageIcon cardImage;
     private String cardName;
     private boolean isReversed;
 
-   public ArrayList<ImageIcon> allImages = new ArrayList<ImageIcon>();
+    public Card() {
+    }
 
-
-    public Card(String cardName, String value, String suit, boolean isReversed) {
+    public Card(String cardName, int value, String suit, boolean isReversed) {
         setValue(value);
         setSuit(suit);
         setCardName(cardName);
@@ -26,11 +27,11 @@ public class Card {
         setBase(base);
     }
 
-    public String getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

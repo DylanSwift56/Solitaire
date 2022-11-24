@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Deck{
     ArrayList<Card> cards;
     final ArrayList<String> SUITS = new ArrayList<>(Arrays.asList("H", "D", "S", "C"));
-    final ArrayList<String> VALUES = new ArrayList<String>(Arrays.asList("A","2","3","4","5","6","7","8","9","10","J","Q","K"));
+    final ArrayList<Integer> VALUES = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13));
 
     public Deck() {
         cards = new ArrayList<>();
@@ -23,11 +23,11 @@ public class Deck{
         return cards;
     }
 
-    public ArrayList<String> getSuits() {
-        return SUITS;
+    public String getSuits(int index) {
+        return SUITS.get(index);
     }
 
-    public ArrayList<String> getValues() {
+    public ArrayList<Integer> getValues() {
         return VALUES;
     }
 

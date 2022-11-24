@@ -18,10 +18,10 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JToggleButton foundationClubs;
     private JToggleButton foundationSpades;
     private JToggleButton foundationDiamonds;
-    private int foundationHeartsValue = 1;
-    private int getFoundationClubsValue = 1;
-    private int getFoundationSpadesValue = 1;
-    private int getFoundationDiamondsValue = 1;
+    private int getFoundationHeartsValue = 0;
+    private int getFoundationClubsValue = 0;
+    private int getFoundationSpadesValue = 0;
+    private int getFoundationDiamondsValue = 0;
     //private Graphics icon = new ImageIcon()
 
     private JToggleButton discardPile;
@@ -32,6 +32,14 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JPanel stack5;
     private JPanel stack6;
     private JPanel stack7;
+
+    private ArrayList<JToggleButton> stack1CardImages = new ArrayList<>();
+    private ArrayList<JToggleButton> stack2CardImages = new ArrayList<>();
+    private ArrayList<JToggleButton> stack3CardImages = new ArrayList<>();
+    private ArrayList<JToggleButton> stack4CardImages = new ArrayList<>();
+    private ArrayList<JToggleButton> stack5CardImages = new ArrayList<>();
+    private ArrayList<JToggleButton> stack6CardImages = new ArrayList<>();
+    private ArrayList<JToggleButton> stack7CardImages = new ArrayList<>();
 
     private ArrayList<Card> stack1Cards = new ArrayList<>();
     private ArrayList<Card> stack2Cards = new ArrayList<>();
@@ -120,6 +128,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         discardPile.removeAll();
 
 
+
         if(currentCard < discardCards.size()) {
             discardPile.setIcon(discardCards.get(currentCard).getCardImage());
             currentCard++;
@@ -157,8 +166,8 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         //JOptionPane.showMessageDialog(null, rand);
 
-        for(Card card: deck.getCards())
-            JOptionPane.showMessageDialog(null, card.getBase());
+        //for(Card card: deck.getCards())
+            //JOptionPane.showMessageDialog(null, card.getBase());
         //JOptionPane.showMessageDialog(null, cardCount);
     }
 
@@ -174,43 +183,81 @@ public class SolitaireGui extends JFrame implements ActionListener{
         for (JPanel stack: allStacks){
             for(int j = 0; j < counter; j++) {
                 int rand = (int) ((Math.random() * deckSize) + 1);
-                Card randomCard = deck.getCards().get(rand);
-                if(j == 0) {
-                    addComponent(stack, randomCard.getBase(), x, y, 98, 150);
-                    deck.getCards().remove(randomCard);
+                Card randomCard = deck.getCards().get((int) ((Math.random() * deckSize) + 1));
+                JToggleButton image = new JToggleButton(randomCard.getCardImage());
+
+                    addComponent(stack, image, x, y, 98, 150);
+
                     deckSize--;
                     cardCount--;
-                }
-                else{
-                    addComponent(stack, new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), x, y, 97, 150);
-                }
-                if(stack.equals(allStacks.get(0))){
-                    stack1Cards.add(randomCard);
-                }
-                else if(stack.equals(allStacks.get(1))){
-                    stack2Cards.add(randomCard);
-                }
-                else if(stack.equals(allStacks.get(2))){
-                    stack3Cards.add(randomCard);
-                }
-                else if(stack.equals(allStacks.get(3))){
-                    stack4Cards.add(randomCard);
-                }
-                else if(stack.equals(allStacks.get(4))){
-                    stack5Cards.add(randomCard);
-                }
-                else if(stack.equals(allStacks.get(5))){
-                    stack6Cards.add(randomCard);
-                }
-                else{
-                    stack6Cards.add(randomCard);
-                }
 
-                //JOptionPane.showMessageDialog(null, deck.getCards().size());
-                //JOptionPane.showMessageDialog(null, deckSize);
+                    if(stack.equals(allStacks.get(0))){
+                        stack1Cards.add(randomCard);
+                        stack1CardImages.add(randomCard.getBase());
+                    }
+                    else if(stack.equals(allStacks.get(1))){
+                        stack2Cards.add(randomCard);
+                        stack2CardImages.add(randomCard.getBase());
+                    }
+                    else if(stack.equals(allStacks.get(2))){
+                        stack3Cards.add(randomCard);
+                        stack3CardImages.add(randomCard.getBase());
+                    }
+                    else if(stack.equals(allStacks.get(3))){
+                        stack4Cards.add(randomCard);
+                        stack4CardImages.add(randomCard.getBase());
+                    }
+                    else if(stack.equals(allStacks.get(4))){
+                        stack5Cards.add(randomCard);
+                        stack5CardImages.add(randomCard.getBase());
+                    }
+                    else if(stack.equals(allStacks.get(5))){
+                        stack6Cards.add(randomCard);
+                        stack6CardImages.add(randomCard.getBase());
+                    }
+                    else if(stack.equals(allStacks.get(6))){
+
+                        stack7Cards.add(randomCard);
+                        stack7CardImages.add(randomCard.getBase());
+
+                    }
+                    deck.getCards().remove(randomCard);
+
+                /*else{
+                    addComponent(stack, new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), x, y, 97, 150);
+                    deckSize--;
+                    if(stack.equals(allStacks.get(0))){
+                        stack1Cards.add(new Card());
+                        stack1CardImages.add(new JToggleButton(new ImageIcon("backOfCardSmall.jpg")));
+                    }
+                    else if(stack.equals(allStacks.get(1))){
+                        stack2Cards.add(new Card());
+                        stack2CardImages.add(new JToggleButton(new ImageIcon("backOfCardSmall.jpg")));
+                    }
+                    else if(stack.equals(allStacks.get(2))){
+                        stack3Cards.add(new Card());
+                        stack3CardImages.add(new JToggleButton(new ImageIcon("backOfCardSmall.jpg")));
+                    }
+                    else if(stack.equals(allStacks.get(3))){
+                        stack4Cards.add(new Card());
+                        stack4CardImages.add(new JToggleButton(new ImageIcon("backOfCardSmall.jpg")));
+                    }
+                    else if(stack.equals(allStacks.get(4))){
+                        stack5Cards.add(new Card());
+                        stack5CardImages.add(new JToggleButton(new ImageIcon("backOfCardSmall.jpg")));
+                    }
+                    else if(stack.equals(allStacks.get(5))){
+                        stack6Cards.add(new Card());
+                        stack6CardImages.add(new JToggleButton(new ImageIcon("backOfCardSmall.jpg")));
+                    }
+                    else if(stack.equals(allStacks.get(6))){
+                        stack7CardImages.add(new JToggleButton(new ImageIcon("backOfCardSmall.jpg")));
+                        stack7Cards.add(new Card());
+
+                    }
+                }*/
                 if(counter > 1)
                     y -= 40;
-
             }
             y = counter * 40;
             counter++;
@@ -223,8 +270,6 @@ public class SolitaireGui extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JToggleButton item = (JToggleButton) e.getSource();
-        if(item.getIcon() != null)
-            foundationHearts.setIcon(item.getIcon());
         if(item.equals(discardPile)) {
             if (currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
@@ -238,57 +283,317 @@ public class SolitaireGui extends JFrame implements ActionListener{
                 currentCard = 0;
             }
         }
+
+
         //removes icon from button it was attached to
+        int cardIndex;
+        if (!item.getParent().equals(null) && item.getIcon() != null) {
 
-        if(item.getParent().equals(stack7)) {
-            //item.setIcon(new ImageIcon("2H.jpg"));
-            cardClicked(item);
-            repaint();
-            revalidate();
+            if (item.getParent().equals(stack7)) {
+                cardIndex = stack7CardImages.indexOf(item) + 1;
+                JOptionPane.showMessageDialog(null, stack7Cards.get(cardIndex).getValue());
+                if (stack7Cards.get(0).getSuit() == "D" && stack7Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    stack7.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack7Cards.get(0).getSuit() == "H" && stack7Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                    foundationHearts.setIcon(item.getIcon());
+                    getFoundationHeartsValue++;
+                    stack7.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack7Cards.get(0).getSuit() == "S" && stack7Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    stack7.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack7Cards.get(0).getSuit() == "C" && stack7Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                    foundationClubs.setIcon(item.getIcon());
+                    getFoundationClubsValue++;
+                    stack7.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else {
+                  //  checkReversed(item, cardIndex);
+                    return;
+                }
+            }
+
+
+            if (item.getParent().equals(stack6)) {
+                cardIndex = stack6CardImages.indexOf(item) + 1;
+                if (stack6Cards.get(0).getSuit() == "D" && stack6Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    stack6.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack6Cards.get(0).getSuit() == "H" && stack6Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                    foundationHearts.setIcon(item.getIcon());
+                    getFoundationHeartsValue++;
+                    stack6.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack6Cards.get(0).getSuit() == "S" && stack6Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    stack6.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack6Cards.get(0).getSuit() == "C" && stack6Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                    foundationClubs.setIcon(item.getIcon());
+                    getFoundationClubsValue++;
+                    stack6.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else {
+                    //checkReversed(item, cardIndex);
+                    return;
+                }
+            }
+
+
+            if (item.getParent().equals(stack5)) {
+                cardIndex = stack5CardImages.indexOf(e.getSource()) + 1;
+                if (stack5Cards.get(0).getSuit() == "D" && stack5Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    stack5.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack5Cards.get(0).getSuit() == "H" && stack5Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                    foundationHearts.setIcon(item.getIcon());
+                    getFoundationHeartsValue++;
+                    stack5.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack5Cards.get(0).getSuit() == "S" && stack5Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    stack5.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack5Cards.get(0).getSuit() == "C" && stack5Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                    foundationClubs.setIcon(item.getIcon());
+                    getFoundationClubsValue++;
+                    stack5.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else {
+                    //checkReversed(item, cardIndex);
+                    return;
+                }
+            }
+
+            if (item.getParent().equals(stack4)) {
+                cardIndex = stack4CardImages.indexOf(item) + 1;
+                if (stack4Cards.get(0).getSuit() == "D" && stack4Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    stack4.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack4Cards.get(0).getSuit() == "H" && stack4Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                    foundationHearts.setIcon(item.getIcon());
+                    getFoundationHeartsValue++;
+                    stack4.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack4Cards.get(0).getSuit() == "S" && stack4Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    stack4.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack4Cards.get(0).getSuit() == "C" && stack4Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                    foundationClubs.setIcon(item.getIcon());
+                    getFoundationClubsValue++;
+                    stack4.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else {
+                    //checkReversed(item, cardIndex);
+                    return;
+                }
+            }
+
+            if (item.getParent().equals(stack3)) {
+                cardIndex = stack3CardImages.indexOf(e.getSource()) + 1;
+                if (stack3Cards.get(0).getSuit() == "D" && stack3Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    stack3.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack3Cards.get(0).getSuit() == "H" && stack3Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                    foundationHearts.setIcon(item.getIcon());
+                    getFoundationHeartsValue++;
+                    stack3.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack3Cards.get(0).getSuit() == "S" && stack3Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    stack3.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack3Cards.get(0).getSuit() == "C" && stack3Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                    foundationClubs.setIcon(item.getIcon());
+                    getFoundationClubsValue++;
+                    stack3.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else {
+                   // checkReversed(item);
+                    return;
+                }
+
+            }
+
+            if (item.getParent().equals(stack2)) {
+                cardIndex = stack2CardImages.indexOf(item) + 1;
+                if (stack2Cards.get(0).getSuit() == "D" && stack2Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    stack2.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack2Cards.get(0).getSuit() == "H" && stack2Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                    foundationHearts.setIcon(item.getIcon());
+                    getFoundationHeartsValue++;
+                    stack2.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack2Cards.get(0).getSuit() == "S" && stack2Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    stack2.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack2Cards.get(0).getSuit() == "C" && stack2Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                    foundationClubs.setIcon(item.getIcon());
+                    getFoundationClubsValue++;
+                    stack2.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else {
+                   // checkReversed(item, cardIndex);
+                    return;
+                }
+
+
+            }
+
+            if (item.getParent().equals(stack1)) {
+
+                if (stack1Cards.get(0).getSuit() == "D" && stack1Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    stack1.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack1Cards.get(0).getSuit() == "H" && stack1Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                    foundationHearts.setIcon(item.getIcon());
+                    getFoundationHeartsValue++;
+                    stack1.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack1Cards.get(0).getSuit() == "S" && stack1Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    stack1.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+                } else if (stack1Cards.get(0).getSuit() == "C" && stack1Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                    foundationClubs.setIcon(item.getIcon());
+                    getFoundationClubsValue++;
+                    stack1.remove(item);
+                    repaint();
+                    revalidate();
+                    return;
+
+                } else {
+                    //checkReversed(item, cardIndex);
+                    return;
+                }
+
+
+            }
         }
-        //JOptionPane.showMessageDialog(null, item.getIcon().getIconWidth());
-            //JOptionPane.showMessageDialog(null, item.getIcon().getIconWidth());
 
-
-            //item.setReve
-
-            /*if(e.getSource().getClass().){
-                card1.setReversed(false);
-                repaint();
-                JOptionPane.showMessageDialog(null, card1.getBase().getIcon());
-                return;
-            */
-
-        //if(item.getIcon().equals(discardPile.getIcon()))
-
-
-
-            //Removes any trace of card left, so you are able to click anywhere on the card behind
-            //tableau.remove(item);
-            tableau.repaint();
-            tableau.revalidate();
-
-
-
-
-        validate();
 
     }
 
-    public void cardClicked(JToggleButton card){
-        JOptionPane.showMessageDialog(null, card.getName());
+    public void checkReversed(JToggleButton card){
         Icon image = card.getIcon();
-        ImageIcon backImage = (ImageIcon) discardPile.getIcon();
-        //if(card.getWidth() == 97){//width of reversed card is set to 97 instead of 98
-           if(image.getIconWidth() == 100){
-               card.setIcon(new ImageIcon("2H.jpg"));
+        Card randomCard = deck.getCards().get((int) ((Math.random() * cardCount)));
+        if(image != null)
+           if(image.getIconWidth() == 100){//width of reversed card is 100
+               card.setIcon(randomCard.getCardImage());
+               deck.getCards().remove(randomCard);
                repaint();
                revalidate();
+               if(card.getParent().equals(stack2)){
+                   stack2Cards.add(stack2Cards.indexOf(card), randomCard);
+                   //stack2CardImages.
+                   stack2CardImages.add(1, randomCard.getBase());
+                   JOptionPane.showMessageDialog(null, stack2CardImages.get(0));
+                   JOptionPane.showMessageDialog(null, stack2CardImages.get(1));
+               }
+               if(card.getParent().equals(stack3)){
+                   //stack3Cards.add(randomCard);
+                   //stack3CardImages.add(randomCard.getBase());
+                   stack3Cards.trimToSize();
+                            JOptionPane.showMessageDialog(null, stack3CardImages.indexOf(card.getIcon()));
+               }
+               if(card.getParent().equals(stack4)){
+                   stack4Cards.add(randomCard);
+                   stack4CardImages.add(randomCard.getBase());
+               }
+               if(card.getParent().equals(stack5)){
+                   stack5Cards.add(randomCard);
+                   stack5CardImages.add(randomCard.getBase());
+               }
+               if(card.getParent().equals(stack6)){
+                   stack6Cards.add(randomCard);
+                   stack6CardImages.add(randomCard.getBase());
+               }
+               if(card.getParent().equals(stack7)){
+                   stack7Cards.add(randomCard);
+                   stack7CardImages.add(randomCard.getBase());
+               }
+               cardCount--;
            }
-               // image.equals(new ImageIcon("twoOfHearts.jpg"));
-        //JOptionPane.showMessageDialog(null, image.getIconWidth());
-        //
-            // JOptionPane.showMessageDialog(null, image.getIconWidth());
 
     }
 
