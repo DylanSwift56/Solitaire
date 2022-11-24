@@ -116,7 +116,8 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="fed81" binding="tableau" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="fed81" binding="tableau" layout-manager="GridLayoutManager" row-count="1" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="1000" height="500"/>
@@ -132,67 +133,95 @@
             </properties>
             <border type="line"/>
             <children>
-              <component id="22e7" class="javax.swing.JToggleButton" binding="tableau1">
-                <constraints/>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <maximumSize width="98" height="130"/>
-                  <minimumSize width="98" height="130"/>
-                  <preferredSize width="98" height="130"/>
-                  <text value=""/>
-                  <verticalAlignment value="0"/>
-                </properties>
-              </component>
-              <component id="3c96a" class="javax.swing.JToggleButton" binding="tableau2">
-                <constraints/>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <verticalAlignment value="1"/>
-                </properties>
-              </component>
-              <component id="61ab" class="javax.swing.JToggleButton" binding="tableau3">
-                <constraints/>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <horizontalAlignment value="0"/>
-                  <verticalAlignment value="1"/>
-                </properties>
-              </component>
-              <component id="c4c2e" class="javax.swing.JToggleButton" binding="tableau4">
-                <constraints/>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <verticalAlignment value="1"/>
-                </properties>
-              </component>
-              <component id="9519b" class="javax.swing.JToggleButton" binding="tableau5">
-                <constraints/>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <verticalAlignment value="1"/>
-                </properties>
-              </component>
-              <component id="fc2fb" class="javax.swing.JToggleButton" binding="tableau6">
-                <constraints/>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <verticalAlignment value="1"/>
-                </properties>
-              </component>
-              <component id="8a3f8" class="javax.swing.JToggleButton" binding="tableau7">
-                <constraints/>
-                <properties>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="false"/>
-                  <verticalAlignment value="1"/>
-                </properties>
-              </component>
+              <grid id="97205" binding="stack1" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="500"/>
+                    <preferred-size width="140" height="500"/>
+                    <maximum-size width="140" height="500"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <hspacer id="aec97">
+                <constraints>
+                  <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <grid id="b8a7e" binding="stack2" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="500"/>
+                    <preferred-size width="140" height="500"/>
+                    <maximum-size width="140" height="500"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="49fe3" binding="stack3" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="500"/>
+                    <preferred-size width="140" height="500"/>
+                    <maximum-size width="140" height="500"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="caf83" binding="stack4" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="500"/>
+                    <preferred-size width="140" height="500"/>
+                    <maximum-size width="140" height="500"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="40bfe" binding="stack5" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="500"/>
+                    <preferred-size width="140" height="500"/>
+                    <maximum-size width="140" height="500"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="9fcb1" binding="stack6" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="500"/>
+                    <preferred-size width="140" height="500"/>
+                    <maximum-size width="140" height="500"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="fe786" binding="stack7" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="500"/>
+                    <preferred-size width="140" height="500"/>
+                    <maximum-size width="140" height="500"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
             </children>
           </grid>
         </children>

@@ -18,14 +18,29 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JToggleButton foundationClubs;
     private JToggleButton foundationSpades;
     private JToggleButton foundationDiamonds;
+    private int foundationHeartsValue = 1;
+    private int getFoundationClubsValue = 1;
+    private int getFoundationSpadesValue = 1;
+    private int getFoundationDiamondsValue = 1;
+    //private Graphics icon = new ImageIcon()
+
     private JToggleButton discardPile;
-    private JToggleButton tableau1;
-    private JToggleButton tableau2;
-    private JToggleButton tableau3;
-    private JToggleButton tableau4;
-    private JToggleButton tableau5;
-    private JToggleButton tableau6;
-    private JToggleButton tableau7;
+    private JPanel stack1;
+    private JPanel stack2;
+    private JPanel stack3;
+    private JPanel stack4;
+    private JPanel stack5;
+    private JPanel stack6;
+    private JPanel stack7;
+
+    private ArrayList<Card> stack1Cards = new ArrayList<>();
+    private ArrayList<Card> stack2Cards = new ArrayList<>();
+    private ArrayList<Card> stack3Cards = new ArrayList<>();
+    private ArrayList<Card> stack4Cards = new ArrayList<>();
+    private ArrayList<Card> stack5Cards = new ArrayList<>();
+    private ArrayList<Card> stack6Cards = new ArrayList<>();
+    private ArrayList<Card> stack7Cards = new ArrayList<>();
+
     public JToggleButton newButton;
     int nextDiscardCard = 1;
     private int currentCard = 0;
@@ -39,11 +54,13 @@ public class SolitaireGui extends JFrame implements ActionListener{
     Iterator<Card> iterator;
 
 
-    ArrayList<JToggleButton> allTableau = new ArrayList<JToggleButton>();
+    ArrayList<JPanel> allStacks = new ArrayList<JPanel>();
 
     private int cardCount = 52;
 
     private int tableauCounter = 0;
+
+    private int randomCard = (int) (Math.random() * (cardCount - 1)) + 1;
 
 
     public SolitaireGui(){
@@ -69,36 +86,27 @@ public class SolitaireGui extends JFrame implements ActionListener{
         foundationDiamonds.setIcon(new ImageIcon("backOfCardSmall.jpg"));
 
 
-        allTableau.add(tableau1);
-        allTableau.add(tableau2);
-        allTableau.add(tableau3);
-        allTableau.add(tableau4);
-        allTableau.add(tableau5);
-        allTableau.add(tableau6);
-        allTableau.add(tableau7);
+        allStacks.add(stack1);
+        allStacks.add(stack2);
+        allStacks.add(stack3);
+        allStacks.add(stack4);
+        allStacks.add(stack5);
+        allStacks.add(stack6);
+        allStacks.add(stack7);
 
-        populateTableau(deck, iterator);
+
 
         cardStack.addActionListener(this::cardStackClk);
-        tableau1.addActionListener(this::actionPerformed);
         discardPile.addActionListener(this::actionPerformed);
-        tableau2.addActionListener(this::actionPerformed);
-        tableau3.addActionListener(this::actionPerformed);
-        tableau4.addActionListener(this::actionPerformed);
-        tableau5.addActionListener((this::actionPerformed));
-        tableau6.addActionListener(this::actionPerformed);
-        tableau7.addActionListener(this::actionPerformed);
 
-
-
-        tableau.remove(tableau1);
-        tableau.remove(tableau2);
-        tableau.remove(tableau3);
-
-        tableau.setLayout(null);
-
-
-
+        populateTableau(deck);
+        stack1.setLayout(null);
+        stack2.setLayout(null);
+        stack3.setLayout(null);
+        stack4.setLayout(null);
+        stack5.setLayout(null);
+        stack6.setLayout(null);
+        stack7.setLayout(null);
 
         setVisible(true);
 
@@ -119,35 +127,59 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     public static void main(String[] args) {
         SolitaireGui gui = new SolitaireGui();
-
     }
 
-    public void populateTableau(Deck deck, Iterator<Card> iterator){
-        int x = 0;
+
+    public void populateTableau(Deck deck){
+        int x = stack1.getWidth() / 2;
         int y = 0;
         int deckSize = 51;
+        int counter = 1;
 
         Deck dummyDeck = deck;
 
-        for (int i = 1; i < 8; i++) {
-            for(int j = 0; j < i; j++) {
+        for (JPanel stack: allStacks){
+            for(int j = 0; j < counter; j++) {
                 int rand = (int) ((Math.random() * deckSize) + 1);
                 Card randomCard = deck.getCards().get(rand);
                 if(j == 0) {
-                    addComponent(tableau, randomCard.getBase(), x, y, 98, 150);
+                    addComponent(stack, randomCard.getBase(), x, y, 98, 150);
                 }
                 else{
                     randomCard.setReversed(true);
-                    addComponent(tableau, randomCard.getBase(), x, y, 98, 150);
+                    addComponent(stack, randomCard.getBase(), x, y, 97, 150);
+                }
+                if(stack.equals(allStacks.get(0))){
+                    stack1Cards.add(randomCard);
+                }
+                else if(stack.equals(allStacks.get(1))){
+                    stack2Cards.add(randomCard);
+                }
+                else if(stack.equals(allStacks.get(2))){
+                    stack3Cards.add(randomCard);
+                }
+                else if(stack.equals(allStacks.get(3))){
+                    stack4Cards.add(randomCard);
+                }
+                else if(stack.equals(allStacks.get(4))){
+                    stack5Cards.add(randomCard);
+                }
+                else if(stack.equals(allStacks.get(5))){
+                    stack6Cards.add(randomCard);
+                }
+                else{
+                    stack6Cards.add(randomCard);
                 }
                 deck.getCards().remove(randomCard);
-                if(i > 1)
+                if(counter > 1)
                     y -= 40;
                 deckSize--;
+                //cardClicked(randomCard.getBase());
             }
-            y = i * 40;
-            x += 140;
+            y = counter * 40;
+            counter++;
         }
+
 
 
     }
@@ -155,48 +187,47 @@ public class SolitaireGui extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JToggleButton item = (JToggleButton) e.getSource();
-        if(item.getIcon() != null)
-            foundationHearts.setIcon(item.getIcon());
-        if(item.equals(discardPile)){
-            if(currentCard > 1) {
+       // if(item.getIcon() != null)
+         //   foundationHearts.setIcon(item.getIcon());
+        if(item.equals(discardPile)) {
+            if (currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
                 deck.getCards().remove(currentCard);
                 currentCard--;//goes back to card previous to card removed
                 //discardPile.setIcon(cards.get(currentCard));
                 return;
-            }
-            else {
+            } else {
                 deck.getCards().remove(0);//if current card is 0 simply remove it
                 currentCard = 0;
-
             }
-            }
+        }
         //removes icon from button it was attached to
-        item.setIcon(null);
-        if(item.getParent().equals(tableau)){
-            JOptionPane.showMessageDialog(null, "aaa");
+            //item.setIcon(null);
+        if(item.getParent().equals(stack7)) {
+            //item.setIcon(new ImageIcon("2H.jpg"));
+            cardClicked(item);
+            repaint();
+            revalidate();
+        }
+        //JOptionPane.showMessageDialog(null, item.getIcon().getIconWidth());
+            //JOptionPane.showMessageDialog(null, item.getIcon().getIconWidth());
 
-            //item.setReversed(true);
-            for(Card card: deck.getCards()){
-                //if(item.getIcon().equals(card.)){
 
-
-                //}
-            }
+            //item.setReve
 
             /*if(e.getSource().getClass().){
                 card1.setReversed(false);
                 repaint();
                 JOptionPane.showMessageDialog(null, card1.getBase().getIcon());
                 return;
-            */}
+            */
 
         //if(item.getIcon().equals(discardPile.getIcon()))
 
 
 
             //Removes any trace of card left, so you are able to click anywhere on the card behind
-            tableau.remove(item);
+            //tableau.remove(item);
             tableau.repaint();
             tableau.revalidate();
 
@@ -205,17 +236,23 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         validate();
 
-        //fix this counter needs to only increment by 1
-        /*for(JToggleButton toggleButton: allTableau){
-            if(toggleButton.getIcon() == null)
-                tableauCounter++;
-        }
+    }
 
-        if(tableauCounter == 28) {
-            JOptionPane.showMessageDialog(null, "Congratulations you have won the game!!!", "Congratulations!!", 1);
-            dispose();
-        }*/
-        validate();
+    public void cardClicked(JToggleButton card){
+        JOptionPane.showMessageDialog(null, card.getName());
+        Icon image = card.getIcon();
+        ImageIcon backImage = (ImageIcon) discardPile.getIcon();
+        //if(card.getWidth() == 97){//width of reversed card is set to 97 instead of 98
+           if(image.getIconWidth() == 100){
+               card.setIcon(new ImageIcon("2H.jpg"));
+               repaint();
+               revalidate();
+           }
+               // image.equals(new ImageIcon("twoOfHearts.jpg"));
+        //JOptionPane.showMessageDialog(null, image.getIconWidth());
+        //
+            // JOptionPane.showMessageDialog(null, image.getIconWidth());
+
     }
 
 
@@ -272,12 +309,12 @@ public class SolitaireGui extends JFrame implements ActionListener{
         }
     }
 
-    private void addComponent(Container container, Component c, int x, int y,int width, int height) {
-        JToggleButton tempC = (JToggleButton) c;
+    private void addComponent(Container container, JToggleButton c, int x, int y,int width, int height) {
+        JToggleButton tempC = c;
     //https://stackoverflow.com/questions/15125388/java-stacking-components
         tempC.setBounds(x, y, width, height);
         container.add(tempC);
-        tempC.addActionListener(this::actionPerformed);
+        c.addActionListener(this::actionPerformed);
     }
 
     private void addComponent(Container container, Component c, int x, int y) {
