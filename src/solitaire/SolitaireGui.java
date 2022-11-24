@@ -62,12 +62,14 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     private int randomCard = (int) (Math.random() * (cardCount - 1)) + 1;
 
+    ArrayList<Card> discardCards = new ArrayList<>(25);
+
 
     public SolitaireGui(){
 
         deck = new Deck();
 
-        iterator = deck.getCards().iterator();
+
 
         setContentPane(mainPanel);
         setTitle("Solitaire");
@@ -100,6 +102,8 @@ public class SolitaireGui extends JFrame implements ActionListener{
         discardPile.addActionListener(this::actionPerformed);
 
         populateTableau(deck);
+
+        populateDiscardPile();
         stack1.setLayout(null);
         stack2.setLayout(null);
         stack3.setLayout(null);
@@ -115,18 +119,47 @@ public class SolitaireGui extends JFrame implements ActionListener{
     public void cardStackClk(ActionEvent e){
         discardPile.removeAll();
 
-        if(currentCard < deck.getCards().size()) {
-            discardPile.setIcon(deck.getCards().get(currentCard).getCardImage());
+
+        if(currentCard < discardCards.size()) {
+            discardPile.setIcon(discardCards.get(currentCard).getCardImage());
             currentCard++;
         }
         else{
             discardPile.setIcon(null);
             currentCard = 0;
         }
+
+        //JOptionPane.showMessageDialog(null, iterator.next().getCardImage());
+        
+        
+
+        //else{
+          //  discardPile.setIcon(null);
+            //currentCard = 0;
+        //}
     }
 
     public static void main(String[] args) {
         SolitaireGui gui = new SolitaireGui();
+    }
+
+    public void populateDiscardPile(){
+       // int cards = cardCount - 1;
+        int rand;
+
+        for (int i = 0; i < 24 ; i++) {
+            rand = (int) (Math.random() * (cardCount));
+            discardCards.add(deck.getCards().get(rand));
+            deck.getCards().remove(deck.getCards().get(rand));
+            cardCount--;
+        }
+
+
+        //JOptionPane.showMessageDialog(null, rand);
+
+        for(Card card: deck.getCards())
+            JOptionPane.showMessageDialog(null, card.getBase());
+        //JOptionPane.showMessageDialog(null, cardCount);
     }
 
 
@@ -144,10 +177,12 @@ public class SolitaireGui extends JFrame implements ActionListener{
                 Card randomCard = deck.getCards().get(rand);
                 if(j == 0) {
                     addComponent(stack, randomCard.getBase(), x, y, 98, 150);
+                    deck.getCards().remove(randomCard);
+                    deckSize--;
+                    cardCount--;
                 }
                 else{
-                    randomCard.setReversed(true);
-                    addComponent(stack, randomCard.getBase(), x, y, 97, 150);
+                    addComponent(stack, new JToggleButton(new ImageIcon("backOfCardSmall.jpg")), x, y, 97, 150);
                 }
                 if(stack.equals(allStacks.get(0))){
                     stack1Cards.add(randomCard);
@@ -170,11 +205,12 @@ public class SolitaireGui extends JFrame implements ActionListener{
                 else{
                     stack6Cards.add(randomCard);
                 }
-                deck.getCards().remove(randomCard);
+
+                //JOptionPane.showMessageDialog(null, deck.getCards().size());
+                //JOptionPane.showMessageDialog(null, deckSize);
                 if(counter > 1)
                     y -= 40;
-                deckSize--;
-                //cardClicked(randomCard.getBase());
+
             }
             y = counter * 40;
             counter++;
@@ -187,22 +223,23 @@ public class SolitaireGui extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JToggleButton item = (JToggleButton) e.getSource();
-       // if(item.getIcon() != null)
-         //   foundationHearts.setIcon(item.getIcon());
+        if(item.getIcon() != null)
+            foundationHearts.setIcon(item.getIcon());
         if(item.equals(discardPile)) {
             if (currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
-                deck.getCards().remove(currentCard);
+                discardCards.remove(currentCard);
                 currentCard--;//goes back to card previous to card removed
                 //discardPile.setIcon(cards.get(currentCard));
+                item.setIcon(null);
                 return;
             } else {
-                deck.getCards().remove(0);//if current card is 0 simply remove it
+                discardCards.remove(0);//if current card is 0 simply remove it
                 currentCard = 0;
             }
         }
         //removes icon from button it was attached to
-            //item.setIcon(null);
+
         if(item.getParent().equals(stack7)) {
             //item.setIcon(new ImageIcon("2H.jpg"));
             cardClicked(item);
