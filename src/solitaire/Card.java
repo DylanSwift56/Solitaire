@@ -1,10 +1,11 @@
 package solitaire;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Card {
+public class Card implements Serializable {
     public int value;
     public String suit;
     private JToggleButton base;

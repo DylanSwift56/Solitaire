@@ -1,10 +1,11 @@
 package solitaire;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Deck{
+public class Deck implements Serializable {
     ArrayList<Card> cards;
     final ArrayList<String> SUITS = new ArrayList<>(Arrays.asList("H", "D", "S", "C"));
     final ArrayList<Integer> VALUES = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13));

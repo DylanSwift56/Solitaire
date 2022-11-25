@@ -68,8 +68,6 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         deck = new Deck();
 
-
-
         setContentPane(mainPanel);
         setTitle("Solitaire");
         setSize(new Dimension(1050, 600));
@@ -629,7 +627,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         @Override
         public void windowOpened(WindowEvent e) {
-            JOptionPane.showMessageDialog(null, "Welcome to Solitaire!", "Welcome!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Welcome to Solitaire!", "Welcome!", JOptionPane.INFORMATION_MESSAGE);
             name = JOptionPane.showInputDialog("Please enter your name:");
         }
 
@@ -642,8 +640,8 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
             if(choice==JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, "Thanks for Playing!", "Goodbye", JOptionPane.INFORMATION_MESSAGE);
+                saveScore();//Saves data to file
                 dispose();
-                saveScore();
             }
         }
 
@@ -683,10 +681,13 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     private void saveScore(){
         try {
-            File file = new File("nameAndScore.txt");
-            FileWriter writer = new FileWriter(file);
+            File score = new File("nameAndScore.txt");
+
+            FileWriter writer = new FileWriter(score);
+
             writer.write("Name: " + name + " Score: " + scoreCounter);
             writer.close();
+
         }catch (IOException exception){
             JOptionPane.showMessageDialog(null, "Invalid path to file", "Invalid", JOptionPane.ERROR_MESSAGE);
         }
