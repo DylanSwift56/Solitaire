@@ -32,21 +32,21 @@ public class SolitaireGui extends JFrame implements ActionListener{
     private JPanel stack6;
     private JPanel stack7;
 
-    private ArrayList<JToggleButton> stack1CardImages = new ArrayList<>();
-    private ArrayList<JToggleButton> stack2CardImages = new ArrayList<>();
-    private ArrayList<JToggleButton> stack3CardImages = new ArrayList<>();
-    private ArrayList<JToggleButton> stack4CardImages = new ArrayList<>();
-    private ArrayList<JToggleButton> stack5CardImages = new ArrayList<>();
-    private ArrayList<JToggleButton> stack6CardImages = new ArrayList<>();
-    private ArrayList<JToggleButton> stack7CardImages = new ArrayList<>();
+    private final ArrayList<JToggleButton> stack1CardImages = new ArrayList<>();
+    private final ArrayList<JToggleButton> stack2CardImages = new ArrayList<>();
+    private final ArrayList<JToggleButton> stack3CardImages = new ArrayList<>();
+    private final ArrayList<JToggleButton> stack4CardImages = new ArrayList<>();
+    private final ArrayList<JToggleButton> stack5CardImages = new ArrayList<>();
+    private final ArrayList<JToggleButton> stack6CardImages = new ArrayList<>();
+    private final ArrayList<JToggleButton> stack7CardImages = new ArrayList<>();
 
-    private ArrayList<Card> stack1Cards = new ArrayList<>();
-    private ArrayList<Card> stack2Cards = new ArrayList<>();
-    private ArrayList<Card> stack3Cards = new ArrayList<>();
-    private ArrayList<Card> stack4Cards = new ArrayList<>();
-    private ArrayList<Card> stack5Cards = new ArrayList<>();
-    private ArrayList<Card> stack6Cards = new ArrayList<>();
-    private ArrayList<Card> stack7Cards = new ArrayList<>();
+    private final ArrayList<Card> stack1Cards = new ArrayList<>();
+    private final ArrayList<Card> stack2Cards = new ArrayList<>();
+    private final ArrayList<Card> stack3Cards = new ArrayList<>();
+    private final ArrayList<Card> stack4Cards = new ArrayList<>();
+    private final ArrayList<Card> stack5Cards = new ArrayList<>();
+    private final ArrayList<Card> stack6Cards = new ArrayList<>();
+    private final ArrayList<Card> stack7Cards = new ArrayList<>();
 
     private int currentCard = 0;
     Point corner;
@@ -111,7 +111,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
         setVisible(true);
     }
-
+    //Called when a card from the card stack is clicked. A card is then revealed from the pile
     public void cardStackClk(ActionEvent e){
         discardPile.removeAll();
 
@@ -129,6 +129,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         SolitaireGui gui = new SolitaireGui();
     }
 
+    //populates the discard pile with cards from the deck
     public void populateDiscardPile(){
         int rand;
 

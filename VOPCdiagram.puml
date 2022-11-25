@@ -1,0 +1,104 @@
+@startuml
+class solitaire.Deck {
+~ ArrayList<Card> cards
+~ ArrayList<String> SUITS
+~ ArrayList<Integer> VALUES
++ ArrayList<Card> getCards()
++ String getSuits(int)
++ ArrayList<Integer> getValues()
++ {static} void main(String[])
+}
+class solitaire.Card {
++ int value
++ String suit
+- JToggleButton base
+- ImageIcon cardImage
+- String cardName
+- boolean isReversed
++ int getValue()
++ void setValue(int)
++ String getSuit()
++ void setSuit(String)
++ JToggleButton getBase()
++ void setBase(JToggleButton)
++ boolean isReversed()
++ void setReversed(boolean)
++ ImageIcon getCardImage()
++ void setCardImage(ImageIcon)
++ String getCardName()
++ void setCardName(String)
++ {static} String specialCards(int)
++ {static} void main(String[])
+}
+class solitaire.SolitaireGui {
+- JPanel mainPanel
+- JToggleButton cardStack
+- JPanel cardStackPanel
+- JPanel tableau
+- JPanel foundations
+- JPanel topPanel
+- JPanel bottomPanel
+- JToggleButton foundationHearts
+- JToggleButton foundationClubs
+- JToggleButton foundationSpades
+- JToggleButton foundationDiamonds
+- int getFoundationHeartsValue
+- int getFoundationClubsValue
+- int getFoundationSpadesValue
+- int getFoundationDiamondsValue
+- JToggleButton discardPile
+- JPanel stack1
+- JPanel stack2
+- JPanel stack3
+- JPanel stack4
+- JPanel stack5
+- JPanel stack6
+- JPanel stack7
+- ArrayList<JToggleButton> stack1CardImages
+- ArrayList<JToggleButton> stack2CardImages
+- ArrayList<JToggleButton> stack3CardImages
+- ArrayList<JToggleButton> stack4CardImages
+- ArrayList<JToggleButton> stack5CardImages
+- ArrayList<JToggleButton> stack6CardImages
+- ArrayList<JToggleButton> stack7CardImages
+- ArrayList<Card> stack1Cards
+- ArrayList<Card> stack2Cards
+- ArrayList<Card> stack3Cards
+- ArrayList<Card> stack4Cards
+- ArrayList<Card> stack5Cards
+- ArrayList<Card> stack6Cards
+- ArrayList<Card> stack7Cards
+- int currentCard
+~ Point corner
+~ Deck deck
+~ ArrayList<JPanel> allStacks
+- int cardCount
+- int scoreCounter
+~ String name
+~ ArrayList<Card> discardCards
++ void cardStackClk(ActionEvent)
++ {static} void main(String[])
++ void populateDiscardPile()
++ void populateTableau(Deck)
++ void actionPerformed(ActionEvent)
+- void addComponent(Container,JToggleButton,int,int,int,int)
+- void saveScore()
+}
+class solitaire.SolitaireGui.WindowEventHandler {
++ void windowOpened(WindowEvent)
++ void windowClosing(WindowEvent)
++ void windowClosed(WindowEvent)
++ void windowIconified(WindowEvent)
++ void windowDeiconified(WindowEvent)
++ void windowActivated(WindowEvent)
++ void windowDeactivated(WindowEvent)
+}
+
+
+java.io.Serializable <|.. solitaire.Deck
+java.io.Serializable <|.. solitaire.Card
+solitaire.ActionListener <|.. solitaire.SolitaireGui
+solitaire.JFrame <|-- solitaire.SolitaireGui
+solitaire.SolitaireGui +.. solitaire.SolitaireGui.WindowEventHandler
+solitaire.WindowListener <|.. solitaire.SolitaireGui.WindowEventHandler
+@enduml

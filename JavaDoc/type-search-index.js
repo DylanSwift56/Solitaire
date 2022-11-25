@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"solitaire","l":"Card"},{"p":"solitaire","l":"Deck"},{"p":"solitaire","l":"SolitaireGui"}];updateSearchResults();

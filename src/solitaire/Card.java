@@ -83,20 +83,6 @@ public class Card implements Serializable {
         this.cardName = cardName;
     }
 
-    public static String specialCards(int value) {
-        if (value == 1)
-            return "A";
-        else if (value == 11)
-            return "J";
-        else if(value == 12)
-            return "Q";
-        else if (value == 13)
-            return "K";
-        else
-            return String.valueOf(value);
-    }
-
-
     public static void main(String[] args) {
 
 
