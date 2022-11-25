@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class SolitaireGui extends JFrame implements ActionListener{
@@ -66,7 +68,9 @@ public class SolitaireGui extends JFrame implements ActionListener{
 
     private int cardCount = 52;
 
-    private int tableauCounter = 0;
+    private int scoreCounter = 0;
+
+    String name;
 
     private int randomCard = (int) (Math.random() * (cardCount - 1)) + 1;
 
@@ -104,14 +108,14 @@ public class SolitaireGui extends JFrame implements ActionListener{
         allStacks.add(stack6);
         allStacks.add(stack7);
 
+        populateTableau(deck);
 
+        populateDiscardPile();
 
         cardStack.addActionListener(this::cardStackClk);
         discardPile.addActionListener(this::actionPerformed);
 
-        populateTableau(deck);
 
-        populateDiscardPile();
         stack1.setLayout(null);
         stack2.setLayout(null);
         stack3.setLayout(null);
@@ -132,6 +136,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         if(currentCard < discardCards.size()) {
             discardPile.setIcon(discardCards.get(currentCard).getCardImage());
             currentCard++;
+            JOptionPane.showMessageDialog(null, discardCards.get(currentCard - 1).getSuit() + discardCards.get(currentCard - 1).getValue());
         }
         else{
             discardPile.setIcon(null);
@@ -194,6 +199,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
                     if(stack.equals(allStacks.get(0))){
                         stack1Cards.add(randomCard);
                         stack1CardImages.add(randomCard.getBase());
+
                     }
                     else if(stack.equals(allStacks.get(1))){
                         stack2Cards.add(randomCard);
@@ -270,96 +276,162 @@ public class SolitaireGui extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JToggleButton item = (JToggleButton) e.getSource();
-        if(item.equals(discardPile)) {
+       /* if(item.equals(discardPile)) {
             if (currentCard > 1) {
                 currentCard--;//Reset the discard pile to previous card as current card was incremented already
                 discardCards.remove(currentCard);
                 currentCard--;//goes back to card previous to card removed
                 //discardPile.setIcon(cards.get(currentCard));
-                item.setIcon(null);
-                return;
+                item.setIcon(nu;
+                //return;ll)
             } else {
                 discardCards.remove(0);//if current card is 0 simply remove it
                 currentCard = 0;
             }
-        }
+        }*/
 
 
         //removes icon from button it was attached to
         int cardIndex;
         if (!item.getParent().equals(null) && item.getIcon() != null) {
 
-            if (item.getParent().equals(stack7)) {
-                cardIndex = stack7CardImages.indexOf(item) + 1;
-                JOptionPane.showMessageDialog(null, stack7Cards.get(cardIndex).getValue());
-                if (stack7Cards.get(0).getSuit() == "D" && stack7Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
-                    foundationDiamonds.setIcon(item.getIcon());
-                    getFoundationDiamondsValue++;
-                    stack7.remove(item);
-                    repaint();
-                    revalidate();
-                    return;
-                } else if (stack7Cards.get(0).getSuit() == "H" && stack7Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+            if(item.equals(discardPile)){
+                if(discardCards.get(currentCard - 1).getSuit() == "H" && discardCards.get(currentCard - 1).getValue() == getFoundationHeartsValue + 1){
                     foundationHearts.setIcon(item.getIcon());
                     getFoundationHeartsValue++;
-                    stack7.remove(item);
+                    if(currentCard == 0){
+                        currentCard = 0;
+                        discardCards.remove(currentCard);
+                        return;
+                    }
+                    currentCard--;
+                    discardCards.remove(currentCard);
+                    currentCard--;
+                    item.setIcon(null);
                     repaint();
                     revalidate();
                     return;
-                } else if (stack7Cards.get(0).getSuit() == "S" && stack7Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
-                    foundationSpades.setIcon(item.getIcon());
-                    getFoundationSpadesValue++;
-                    stack7.remove(item);
+                }
+                else if(discardCards.get(currentCard - 1).getSuit() == "D" && discardCards.get(currentCard - 1).getValue() == getFoundationDiamondsValue + 1){
+                    foundationDiamonds.setIcon(item.getIcon());
+                    getFoundationDiamondsValue++;
+                    if(currentCard == 0){
+                        currentCard = 0;
+                        discardCards.remove(currentCard);
+                        return;
+                    }
+                    currentCard--;
+                    discardCards.remove(currentCard);
+                    currentCard--;
+                    item.setIcon(null);
                     repaint();
                     revalidate();
                     return;
-                } else if (stack7Cards.get(0).getSuit() == "C" && stack7Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                }
+                else if(discardCards.get(currentCard - 1).getSuit() == "C" && discardCards.get(currentCard - 1).getValue() == getFoundationClubsValue + 1){
                     foundationClubs.setIcon(item.getIcon());
                     getFoundationClubsValue++;
-                    stack7.remove(item);
+                    if(currentCard == 0){
+                        currentCard = 0;
+                        discardCards.remove(currentCard);
+                        return;
+                    }
+                    currentCard--;
+                    discardCards.remove(currentCard);
+                    currentCard--;
+                    item.setIcon(null);
                     repaint();
                     revalidate();
                     return;
-                } else {
-                  //  checkReversed(item, cardIndex);
+                }
+                else if(discardCards.get(currentCard - 1).getSuit() == "S" && discardCards.get(currentCard - 1).getValue() == getFoundationSpadesValue + 1){
+                    foundationSpades.setIcon(item.getIcon());
+                    getFoundationSpadesValue++;
+                    if(currentCard == 0){
+                        currentCard = 0;
+                        discardCards.remove(currentCard);
+                        return;
+                    }
+                    currentCard--;
+                    discardCards.remove(currentCard);
+                    currentCard--;
+                    item.setIcon(null);
+                    repaint();
+                    revalidate();
                     return;
+                }
+            }
+
+            if (item.getParent().equals(stack7)) {
+                for(cardIndex = 0; cardIndex < stack7Cards.size();cardIndex++) {
+                    if (stack7Cards.get(cardIndex).getSuit() == "D" && stack7Cards.get(cardIndex).getValue() == getFoundationDiamondsValue + 1) {
+                        foundationDiamonds.setIcon(item.getIcon());
+                        getFoundationDiamondsValue++;
+                        stack7.remove(cardIndex);
+                        repaint();
+                        revalidate();
+                        return;
+                    } else if (stack7Cards.get(cardIndex).getSuit() == "H" && stack7Cards.get(cardIndex).getValue() == getFoundationHeartsValue + 1) {
+                        foundationHearts.setIcon(item.getIcon());
+                        getFoundationHeartsValue++;
+                        stack7.remove(cardIndex);
+                        repaint();
+                        revalidate();
+                        return;
+                    } else if (stack7Cards.get(cardIndex).getSuit() == "S" && stack7Cards.get(cardIndex).getValue() == getFoundationSpadesValue + 1) {
+                        foundationSpades.setIcon(item.getIcon());
+                        getFoundationSpadesValue++;
+                        stack7.remove(cardIndex);
+                        repaint();
+                        revalidate();
+                        return;
+                    } else if (stack7Cards.get(cardIndex).getSuit() == "C" && stack7Cards.get(cardIndex).getValue() == getFoundationClubsValue + 1) {
+                        foundationClubs.setIcon(item.getIcon());
+                        getFoundationClubsValue++;
+                        stack7.remove(cardIndex);
+                        repaint();
+                        revalidate();
+                        return;
+                    }
                 }
             }
 
 
             if (item.getParent().equals(stack6)) {
-                cardIndex = stack6CardImages.indexOf(item) + 1;
-                if (stack6Cards.get(0).getSuit() == "D" && stack6Cards.get(0).getValue() == getFoundationDiamondsValue + 1) {
-                    foundationDiamonds.setIcon(item.getIcon());
-                    getFoundationDiamondsValue++;
-                    stack6.remove(item);
-                    repaint();
-                    revalidate();
-                    return;
-                } else if (stack6Cards.get(0).getSuit() == "H" && stack6Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
-                    foundationHearts.setIcon(item.getIcon());
-                    getFoundationHeartsValue++;
-                    stack6.remove(item);
-                    repaint();
-                    revalidate();
-                    return;
-                } else if (stack6Cards.get(0).getSuit() == "S" && stack6Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
-                    foundationSpades.setIcon(item.getIcon());
-                    getFoundationSpadesValue++;
-                    stack6.remove(item);
-                    repaint();
-                    revalidate();
-                    return;
-                } else if (stack6Cards.get(0).getSuit() == "C" && stack6Cards.get(0).getValue() == getFoundationClubsValue + 1) {
-                    foundationClubs.setIcon(item.getIcon());
-                    getFoundationClubsValue++;
-                    stack6.remove(item);
-                    repaint();
-                    revalidate();
-                    return;
-                } else {
-                    //checkReversed(item, cardIndex);
-                    return;
+
+                for(cardIndex = 0; cardIndex < stack7Cards.size();cardIndex++) {
+                    if (stack6Cards.get(cardIndex).getSuit() == "D" && stack6Cards.get(cardIndex).getValue() == getFoundationDiamondsValue + 1) {
+                        foundationDiamonds.setIcon(item.getIcon());
+                        getFoundationDiamondsValue++;
+                        stack6.remove(cardIndex);
+                        repaint();
+                        revalidate();
+                        return;
+                    } else if (stack6Cards.get(0).getSuit() == "H" && stack6Cards.get(0).getValue() == getFoundationHeartsValue + 1) {
+                        foundationHearts.setIcon(item.getIcon());
+                        getFoundationHeartsValue++;
+                        stack6.remove(item);
+                        repaint();
+                        revalidate();
+                        return;
+                    } else if (stack6Cards.get(0).getSuit() == "S" && stack6Cards.get(0).getValue() == getFoundationSpadesValue + 1) {
+                        foundationSpades.setIcon(item.getIcon());
+                        getFoundationSpadesValue++;
+                        stack6.remove(item);
+                        repaint();
+                        revalidate();
+                        return;
+                    } else if (stack6Cards.get(0).getSuit() == "C" && stack6Cards.get(0).getValue() == getFoundationClubsValue + 1) {
+                        foundationClubs.setIcon(item.getIcon());
+                        getFoundationClubsValue++;
+                        stack6.remove(item);
+                        repaint();
+                        revalidate();
+                        return;
+                    } else {
+                        //checkReversed(item, cardIndex);
+                        return;
+                    }
                 }
             }
 
@@ -607,6 +679,7 @@ public class SolitaireGui extends JFrame implements ActionListener{
         @Override
         public void windowOpened(WindowEvent e) {
             JOptionPane.showMessageDialog(null, "Welcome to Solitaire!", "Welcome!", 1);
+            name = JOptionPane.showInputDialog("Please enter your name:");
         }
 
         @Override
